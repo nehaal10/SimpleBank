@@ -86,7 +86,7 @@ func TestDisplayAccount(t *testing.T) {
 
 	arg := DispAcoountParams{
 		Offset: 5,
-		Limit:  5,
+		Limit:  6,
 	}
 
 	acc, err := testQuery.DispAcoount(context.Background(), arg)
