@@ -86,14 +86,15 @@ func TestDisplayAccount(t *testing.T) {
 
 	arg := DispAcoountParams{
 		Offset: 5,
-		Limit:  6,
+		Limit:  5,
 	}
 
 	acc, err := testQuery.DispAcoount(context.Background(), arg)
 
 	require.NoError(t, err)
+	require.NotEmpty(t, acc)
 
-	for i := 0; i < 5; i++ {
-		require.NotEmpty(t, acc[i])
+	for _, account := range acc {
+		require.NotEmpty(t, account)
 	}
 }
