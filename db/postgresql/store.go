@@ -5,16 +5,15 @@ import (
 	"fmt"
 
 	"github.com/jackc/pgx/v5"
-	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Store struct {
-	connPool *pgxpool.Pool
+	connPool *pgx.Conn
 	*Queries
 }
 
 // NewStore creates a new store
-func NewStore(connPool *pgxpool.Pool) *Store {
+func NewStore(connPool *pgx.Conn) *Store {
 	return &Store{
 		connPool: connPool,
 		Queries:  New(connPool),

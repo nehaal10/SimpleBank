@@ -15,6 +15,8 @@ func NewServer(store *db.Store) *Server {
 	router := gin.Default()
 
 	router.POST("/accounts", server.createAccount)
+	router.GET("/accounts/:id", server.getAccount)
+	router.GET("/accounts", server.listAccount)
 
 	server.router = router
 
@@ -26,5 +28,5 @@ func (server *Server) Start(address string) error {
 }
 
 func errorResponse(err error) gin.H {
-	return gin.H{"error": err}
+	return gin.H{"error": err.Error()}
 }

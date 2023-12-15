@@ -8,16 +8,19 @@ import (
 
 	"github.com/jackc/pgx/v5"
 	_ "github.com/lib/pq"
-)
-
-const (
-	dbSource = "postgresql://root:secret@localhost:5431/simple_bank?sslmode=disable"
+	"github.com/nehaal10/simeplebank/util"
 )
 
 var testQuery *Queries
 
 func TestMain(m *testing.M) {
-	conn, err := pgx.Connect(context.Background(), dbSource)
+	config, err := util.LoadConfig("../..")
+
+	if err != nil {
+		log.Fatal("cannot connect, ", err)
+	}
+
+	conn, err := pgx.Connect(context.Background(), config.DBSource)
 
 	if err != nil {
 		log.Fatal("cannot connect, ", err)
